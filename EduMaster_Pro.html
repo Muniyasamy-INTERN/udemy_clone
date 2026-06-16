@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduMaster Pro</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#222;--accent:#6d28d9}
+.dark{--bg:#111827;--card:#1f2937;--text:#f3f4f6}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 5%;background:var(--card);position:sticky;top:0}
+.logo{font-size:28px;font-weight:bold;color:var(--accent)}
+input[type=text]{padding:10px;width:40%;border:1px solid #ccc;border-radius:25px}
+button{cursor:pointer;padding:10px 16px;border:none;border-radius:8px}
+.primary{background:var(--accent);color:white}
+.hero{padding:80px 5%;display:flex;gap:30px;align-items:center}
+.hero div{flex:1}
+.hero h1{font-size:52px;margin-bottom:15px}
+.hero img{width:100%;border-radius:16px}
+.section{padding:60px 5%}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.card img{width:100%;height:170px;object-fit:cover;border-radius:10px}
+.price{font-weight:bold;color:var(--accent);margin-top:10px}
+.filters{text-align:center;margin-bottom:20px}
+.filters button{margin:5px}
+footer{text-align:center;padding:30px;background:var(--card)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6)}
+.modal-content{background:white;max-width:500px;margin:10% auto;padding:20px;border-radius:12px}
+.testimonial{font-style:italic}
+@media(max-width:768px){.hero{flex-direction:column}.hero h1{font-size:36px}input[type=text]{display:none}}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">EduMaster Pro</div>
+<input type="text" placeholder="Search courses...">
+<div>
+<button onclick="toggleMode()">🌙</button>
+<button class="primary">Sign Up</button>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+<h1>Learn Skills That Build Careers</h1>
+<p>Explore thousands of online courses from expert instructors.</p><br>
+<button class="primary">Start Learning</button>
+</div>
+<div>
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200">
+</div>
+</section>
+
+<section class="section">
+<h2>Popular Categories</h2><br>
+<div class="grid">
+<div class="card">Programming</div>
+<div class="card">Physics</div>
+<div class="card">Business</div>
+<div class="card">Design</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Featured Courses</h2><br>
+<div class="filters">
+<button onclick="filterCourses('all')">All</button>
+<button onclick="filterCourses('tech')">Tech</button>
+<button onclick="filterCourses('science')">Science</button>
+</div>
+<div class="grid" id="courses">
+<div class="card course tech">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800">
+<h3>Web Development</h3>
+<p>HTML, CSS, JS Bootcamp</p>
+<div class="price">₹499</div>
+<button onclick="showCourse('Web Development')">View</button>
+</div>
+
+<div class="card course science">
+<img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800">
+<h3>Physics Mastery</h3>
+<p>Class 11 & 12 Physics</p>
+<div class="price">₹699</div>
+<button onclick="showCourse('Physics Mastery')">View</button>
+</div>
+
+<div class="card course tech">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800">
+<h3>Python Programming</h3>
+<p>Beginner to Advanced</p>
+<div class="price">₹599</div>
+<button onclick="showCourse('Python Programming')">View</button>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>What Students Say</h2><br>
+<div class="grid">
+<div class="card testimonial">"Excellent platform for learning."</div>
+<div class="card testimonial">"Easy to understand courses."</div>
+<div class="card testimonial">"Worth every rupee."</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Become an Instructor</h2><br>
+<div class="card">
+<p>Teach students worldwide and earn revenue from your expertise.</p><br>
+<button class="primary">Start Teaching</button>
+</div>
+</section>
+
+<footer>
+<h3>EduMaster Pro</h3>
+<p>© 2026 All Rights Reserved</p>
+</footer>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2 id="courseTitle"></h2>
+<p>This is a sample course description page.</p><br>
+<button onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function toggleMode(){document.body.classList.toggle('dark')}
+function filterCourses(cat){
+document.querySelectorAll('.course').forEach(c=>{
+c.style.display=(cat==='all'||c.classList.contains(cat))?'block':'none';
+});
+}
+function showCourse(title){
+document.getElementById('courseTitle').innerText=title;
+document.getElementById('modal').style.display='block';
+}
+function closeModal(){
+document.getElementById('modal').style.display='none';
+}
+</script>
+</body>
+</html>
